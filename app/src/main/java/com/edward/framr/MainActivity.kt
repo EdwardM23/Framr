@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -38,7 +39,8 @@ class MainActivity : AppCompatActivity() {
 
     var activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK && result.data != null) {
-            Toast.makeText(this, "Pick image succedd", Toast.LENGTH_SHORT).show()
+            binding.imgDisplay.setImageURI(result.data!!.data)
+            Toast.makeText(this, "Pick image succeed", Toast.LENGTH_SHORT).show()
         } else if (result.resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "Pick image canceled", Toast.LENGTH_SHORT).show()
         }
